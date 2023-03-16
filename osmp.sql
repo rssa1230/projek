@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2023 at 02:56 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 7.3.29
+-- Waktu pembuatan: 16 Mar 2023 pada 07.04
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `about`
+-- Struktur dari tabel `about`
 --
 
 CREATE TABLE `about` (
@@ -37,7 +37,7 @@ CREATE TABLE `about` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `agenda`
+-- Struktur dari tabel `agenda`
 --
 
 CREATE TABLE `agenda` (
@@ -48,7 +48,7 @@ CREATE TABLE `agenda` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `agenda`
+-- Dumping data untuk tabel `agenda`
 --
 
 INSERT INTO `agenda` (`id`, `tanggal`, `agenda`, `ketuplak`) VALUES
@@ -57,8 +57,8 @@ INSERT INTO `agenda` (`id`, `tanggal`, `agenda`, `ketuplak`) VALUES
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `joinsiswa`
--- (See below for the actual view)
+-- Stand-in struktur untuk tampilan `joinsiswa`
+-- (Lihat di bawah untuk tampilan aktual)
 --
 CREATE TABLE `joinsiswa` (
 `id` int(9)
@@ -78,7 +78,7 @@ CREATE TABLE `joinsiswa` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jurusan`
+-- Struktur dari tabel `jurusan`
 --
 
 CREATE TABLE `jurusan` (
@@ -88,7 +88,7 @@ CREATE TABLE `jurusan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `jurusan`
+-- Dumping data untuk tabel `jurusan`
 --
 
 INSERT INTO `jurusan` (`id`, `jurusan`, `keterangan`) VALUES
@@ -99,7 +99,7 @@ INSERT INTO `jurusan` (`id`, `jurusan`, `keterangan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kelas`
+-- Struktur dari tabel `kelas`
 --
 
 CREATE TABLE `kelas` (
@@ -108,7 +108,7 @@ CREATE TABLE `kelas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `kelas`
+-- Dumping data untuk tabel `kelas`
 --
 
 INSERT INTO `kelas` (`id`, `kelas`) VALUES
@@ -120,7 +120,22 @@ INSERT INTO `kelas` (`id`, `kelas`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `siswa`
+-- Struktur dari tabel `profil`
+--
+
+CREATE TABLE `profil` (
+  `id` int(11) NOT NULL,
+  `foto` varchar(100) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `ttl` date NOT NULL,
+  `alamat` text NOT NULL,
+  `site` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `siswa`
 --
 
 CREATE TABLE `siswa` (
@@ -136,18 +151,10 @@ CREATE TABLE `siswa` (
   `hp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `siswa`
---
-
-INSERT INTO `siswa` (`id`, `nis`, `foto`, `nama`, `tingkat`, `id_jurusan`, `id_kelas`, `keterangan`, `jabatan`, `hp`) VALUES
-(7, '1', 'mawar-merah.jpg', 'ROSE', '3', 3, 2, 'Pilih', 'BENDAHARA', '085703243782'),
-(8, '0042021', 'lestari.jpg', 'ROSSA', '1', 1, 2, 'Pilih', 'KOMISI C', '0000000787');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Struktur dari tabel `user`
 --
 
 CREATE TABLE `user` (
@@ -159,7 +166,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `user`
+-- Dumping data untuk tabel `user`
 --
 
 INSERT INTO `user` (`id`, `user`, `username`, `password`, `id_role`) VALUES
@@ -169,7 +176,7 @@ INSERT INTO `user` (`id`, `user`, `username`, `password`, `id_role`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure for view `joinsiswa`
+-- Struktur untuk view `joinsiswa`
 --
 DROP TABLE IF EXISTS `joinsiswa`;
 
@@ -180,77 +187,89 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
--- Indexes for table `about`
+-- Indeks untuk tabel `about`
 --
 ALTER TABLE `about`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `agenda`
+-- Indeks untuk tabel `agenda`
 --
 ALTER TABLE `agenda`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `jurusan`
+-- Indeks untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `kelas`
+-- Indeks untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `siswa`
+-- Indeks untuk tabel `profil`
+--
+ALTER TABLE `profil`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeks untuk tabel `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user`
+-- Indeks untuk tabel `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `about`
+-- AUTO_INCREMENT untuk tabel `about`
 --
 ALTER TABLE `about`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `agenda`
+-- AUTO_INCREMENT untuk tabel `agenda`
 --
 ALTER TABLE `agenda`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `jurusan`
+-- AUTO_INCREMENT untuk tabel `jurusan`
 --
 ALTER TABLE `jurusan`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `kelas`
+-- AUTO_INCREMENT untuk tabel `kelas`
 --
 ALTER TABLE `kelas`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `siswa`
+-- AUTO_INCREMENT untuk tabel `profil`
 --
-ALTER TABLE `siswa`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `profil`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT untuk tabel `siswa`
+--
+ALTER TABLE `siswa`
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
